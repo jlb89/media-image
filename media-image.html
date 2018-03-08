@@ -14,24 +14,37 @@ web component of an image
       :host {
         display: block;
       }
-
       :host[card] {
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.14);
         padding: 20px;
       }
-
       :host[box] {
         background-color: darkgoldenrod;
       }
-
+      :host[round] iron-image {
+        border-radius: 50%;
+      }
       iron-image {
         width: 100%;
           --iron-image-width: 100%;
       }
-
       .caption {
         font-size: 8px;
-        
+      }
+      @media screen and (min-width: 450px) {
+        :host[size="small"] {
+          max-width: 50%;
+        }
+      }
+      @media screen and (min-width: 650px) {
+        :host[size="small"] {
+          max-width: 35%;
+        }
+      }
+      @media screen and (min-width: 900px) {
+        :host[size="small"] {
+          max-width: 25%;
+        }
       }
     </style>
     <h2>Hello World</h2>
@@ -65,9 +78,18 @@ web component of an image
           type: Boolean,
           value: false,
           reflectToAttribute: true,
+        },
+        size: {
+          type: String,
+          value: 'wide',
+          reflectToAttribute: true,
+        },
+        round: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true,
         }
-      },
-
+      }
     });
   </script>
 </dom-module>
