@@ -1,0 +1,95 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-image/iron-image.html">
+
+<!--
+`media-image`
+web component of an image
+
+@demo demo/index.html
+-->
+
+<dom-module id="media-image">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      :host[card] {
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.14);
+        padding: 20px;
+      }
+      :host[box] {
+        background-color: darkgoldenrod;
+      }
+      :host[round] iron-image {
+        border-radius: 50%;
+      }
+      iron-image {
+        width: 100%;
+          --iron-image-width: 100%;
+      }
+      .caption {
+        font-size: 8px;
+      }
+      @media screen and (min-width: 450px) {
+        :host[size="small"] {
+          max-width: 50%;
+        }
+      }
+      @media screen and (min-width: 650px) {
+        :host[size="small"] {
+          max-width: 35%;
+        }
+      }
+      @media screen and (min-width: 900px) {
+        :host[size="small"] {
+          max-width: 25%;
+        }
+      }
+    </style>
+    <h2>Hello World</h2>
+   <iron-image src="[[source]]" fade></iron-image>
+   <div class="caption">
+     <slot name="slot_caption"></slot>
+   </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'media-image',
+
+      properties: {
+        source: {
+          type: String,
+          reflectToAttribute: true,
+        },
+        caption: {
+          type: String,
+          value: '',
+          reflectToAttribute: true,
+        },
+        card: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true,
+        },
+        box: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true,
+        },
+        size: {
+          type: String,
+          value: 'wide',
+          reflectToAttribute: true,
+        },
+        round: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true,
+        }
+      }
+    });
+  </script>
+</dom-module>
